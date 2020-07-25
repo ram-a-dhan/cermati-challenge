@@ -1,5 +1,60 @@
+@media (min-width: 961px) {
+  .HighlightTile {
+    width: 25vw;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 960px) {
+  .HighlightTile {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 479px) {
+  .HighlightTile {
+    width: 90vw;
+  }
+}
+
 .Highlights {
   width: 100%;
   min-height: 100vh;
   background-color: #e5e5e5;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.Pretext {
+  max-width: 640px;
+  text-align: center;
+}
+
+.Pretext h1 {
+  margin: 4rem 1rem 1rem 1rem;
+  font-weight: normal;
+}
+
+.Pretext p {
+  margin: 1rem 2rem 3.5rem 2rem;
+}
+
+.TilesContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0.5rem;
+}
+
+.HighlightTile {
+  margin: 0.5rem;
+  padding: 1rem;
+  border: 1px solid grey;
+}
+
+.HighlightTile h2 {
+  font-weight: normal;
+  margin-bottom: 1rem;
 }
