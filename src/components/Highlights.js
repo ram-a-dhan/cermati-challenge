@@ -3,6 +3,7 @@ import HighlightTile from './HighlightTile';
 import './Highlights.css';
 
 export default function Highlights() {
+  // eslint-disable-next-line
   const [tiles, setTiles] = useState([
     {
       id: 1,

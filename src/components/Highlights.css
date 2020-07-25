@@ -1,6 +1,6 @@
 @media (min-width: 961px) {
   .HighlightTile {
-    width: 25vw;
+    width: 28vw;
   }
 }
 
@@ -12,7 +12,7 @@
 
 @media (max-width: 479px) {
   .HighlightTile {
-    width: 90vw;
+    width: 80vw;
   }
 }
 
@@ -37,7 +37,7 @@
 }
 
 .Pretext p {
-  margin: 1rem 2rem 3.5rem 2rem;
+  margin: 1rem 2rem 2rem 2rem;
 }
 
 .TilesContainer {
@@ -45,16 +45,28 @@
   flex-flow: row wrap;
   justify-content: center;
   align-items: stretch;
-  padding: 0.5rem;
+  padding: 1rem;
+}
+
+.TileIcon {
+  width: 0rem;
+  height: 0rem;
+  float: right;
+  margin-right: 2rem;
 }
 
 .HighlightTile {
-  margin: 0.5rem;
+  margin: 1rem;
   padding: 1rem;
   border: 1px solid grey;
+  box-shadow: 1px 1px 1px 1px white, inset 1px 1px 1px 1px white;
 }
 
 .HighlightTile h2 {
   font-weight: normal;
   margin-bottom: 1rem;
+}
+
+.HighlightTile p {
+  font-size: 0.9rem;
 }
