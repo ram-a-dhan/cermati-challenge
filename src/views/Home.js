@@ -1,5 +1,5 @@
 import React from 'react';
-import Notification from '../components/Notification';
+// import Notification from '../components/Notification';
 import Header from '../components/Header';
 import Highlights from '../components/Highlights';
 import Footer from '../components/Footer';
@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 export default function Home() {
   return (
     <div className="Home">
-      <Notification />
+      {/* <Notification /> */}
       <Header />
       <Highlights />
       <Footer />

@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Notification.css';
 
-export default function Notification() {
-  const [hideNotif, setHideNotif] = useState(false);
-
+export default function Notification({ hideNotif, setHideNotif, ...props }) {
   return (
     <div className={"Notification" + (hideNotif ? " NotifHidden" : "")}>
       <div className="NotifBox">
