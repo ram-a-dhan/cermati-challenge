@@ -4,8 +4,8 @@ import './Newsletter.css';
 export default function Newsletter({ hideNews, setHideNews, ...props }) {
   return (
     // <div className="NewsContainer">
-      <div className="Newsletter">
-        <button className="NewsClose">
+      <div className={"Newsletter" + (hideNews ? " NewsHidden" : "")}>
+        <button className="NewsClose" onClick={() => setHideNews(true)}>
           &times;
         </button>
         <h2>
