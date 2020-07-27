@@ -1,18 +1,33 @@
+@media (min-width: 641px) {
+  .Newsletter {
+    width: 640px;
+  }
+}
+
+@media (max-width: 640px) {
+  .Newsletter {
+    width: 100vw;
+  }
+}
+
 .NewsContainer {
   width: 0rem;
   height: 0rem;
   overflow: visible;
-  position: relative;
+  position: sticky;
   bottom: 0;
 }
 
 .Newsletter {
-  max-width: 640px;
+  /* min-width: 360px;
+  max-width: 640px; */
   background-color: rgba(0, 123, 193, 0.75);
   padding: 1rem;
-  position: sticky;
+  position: absolute;
   bottom: 0;
   overflow: hidden;
+  /* -webkit-transform: translateY(-100%);  */
+  /* transform: translateY(-100%); */
 }
 
 .NewsHidden {

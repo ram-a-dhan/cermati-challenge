@@ -3,7 +3,7 @@ import './Newsletter.css';
 
 export default function Newsletter({ hideNews, setHideNews, ...props }) {
   return (
-    // <div className="NewsContainer">
+    <div className="NewsContainer">
       <div className={"Newsletter" + (hideNews ? " NewsHidden" : "")}>
         <button className="NewsClose" onClick={() => setHideNews(true)}>
           &times;
@@ -21,6 +21,6 @@ export default function Newsletter({ hideNews, setHideNews, ...props }) {
           <button type="submit">Count me in!</button>
         </form>
       </div>
-    // </div>
+    </div>
   )
 }
