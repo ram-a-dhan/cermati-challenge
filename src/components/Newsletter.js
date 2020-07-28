@@ -2,10 +2,15 @@ import React from 'react';
 import './Newsletter.css';
 
 export default function Newsletter({ hideNews, setHideNews, ...props }) {
+  const handleHideNews = () => {
+    document.querySelector('.Newsletter').classList.toggle('NewsSlideDown');
+  };
   return (
     <div className="NewsContainer">
-      <div className={"Newsletter" + (hideNews ? " NewsHidden" : "")}>
-        <button className="NewsClose" onClick={() => setHideNews(true)}>
+      {/* <div className={"Newsletter" + (hideNews ? " NewsHidden" : "")}> */}
+      <div className="Newsletter">
+        {/* <button className="NewsClose" onClick={() => setHideNews(true)}> */}
+        <button className="NewsClose" onClick={() => handleHideNews()}>
           &times;
         </button>
         <h2>
