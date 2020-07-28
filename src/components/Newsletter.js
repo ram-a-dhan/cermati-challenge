@@ -6,21 +6,34 @@ export default function Newsletter({ hideNews, setHideNews, ...props }) {
   const [docHeight, setDocHeight] = useState(0);
 
   useEffect(() => {
-    const handleDocHeight = (event) => {
+    const handleDocHeight = () => {
       setDocHeight(getDocHeight);
     };
     window.addEventListener('load', handleDocHeight);
+    window.addEventListener('resize', handleDocHeight);
 
-    const handleScrollPos = (event) => {
-      // setScrollPos(event.target.documentElement.scrollTop);
-      setScrollPos(window.pageYOffset);
+    const handleScrollPos = () => {
+      setScrollPos(Math.round(window.pageYOffset));
     };
+    window.addEventListener('load', handleScrollPos);
     window.addEventListener('scroll', handleScrollPos);
     return () => {
       window.removeEventListener('load', handleDocHeight);
+      window.removeEventListener('resize', handleDocHeight);
+      window.removeEventListener('load', handleScrollPos);
       window.removeEventListener('scroll', handleScrollPos);
     }
   }, [scrollPos, docHeight]);
+
+  useEffect(() => {
+    if (scrollPos + Math.round(window.innerHeight / 2) >= Math.round(docHeight / 3)) {
+      document.querySelector('.Newsletter').classList.remove('NewsSlideDown');
+    }
+  }, [scrollPos, docHeight]);
+
+  useEffect(() => {
+    handleHideNews();
+  }, [])
 
   const getDocHeight = () => {
     setDocHeight(Math.max(
@@ -31,13 +44,13 @@ export default function Newsletter({ hideNews, setHideNews, ...props }) {
   }
 
   const handleHideNews = () => {
-    document.querySelector('.Newsletter').classList.toggle('NewsSlideDown');
+    document.querySelector('.Newsletter').classList.add('NewsSlideDown');
   };
   
   return (
     <div className="NewsContainer">
       {/* <div className={"Newsletter" + (hideNews ? " NewsHidden" : "")}> */}
-      <div className="Newsletter">
+      <div className="Newsletter NewsSlideDown">
         {/* <button className="NewsClose" onClick={() => setHideNews(true)}> */}
         <button className="NewsClose" onClick={() => handleHideNews()}>
           &times;
