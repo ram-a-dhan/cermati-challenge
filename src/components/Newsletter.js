@@ -10,6 +10,7 @@ export default function Newsletter({ hideNews, setHideNews, ...props }) {
       setDocHeight(getDocHeight);
     };
     window.addEventListener('load', handleDocHeight);
+    window.addEventListener('scroll', handleDocHeight);
     window.addEventListener('resize', handleDocHeight);
 
     const handleScrollPos = () => {
@@ -17,22 +18,28 @@ export default function Newsletter({ hideNews, setHideNews, ...props }) {
     };
     window.addEventListener('load', handleScrollPos);
     window.addEventListener('scroll', handleScrollPos);
+    window.addEventListener('resize', handleScrollPos);
     return () => {
       window.removeEventListener('load', handleDocHeight);
+      window.removeEventListener('scroll', handleDocHeight);
       window.removeEventListener('resize', handleDocHeight);
       window.removeEventListener('load', handleScrollPos);
       window.removeEventListener('scroll', handleScrollPos);
+      window.removeEventListener('resize', handleScrollPos);
     }
   }, [scrollPos, docHeight]);
 
   useEffect(() => {
     if (scrollPos + Math.round(window.innerHeight / 2) >= Math.round(docHeight / 3)) {
-      document.querySelector('.Newsletter').classList.remove('NewsSlideDown');
+      if (!localStorage.hideNewsUntil || new Date(localStorage.hideNewsUntil) < new Date()) {
+        localStorage.removeItem('hideNewsUntil');
+        document.querySelector('.Newsletter').classList.remove('NewsSlideDown');
+      }
     }
   }, [scrollPos, docHeight]);
 
   useEffect(() => {
-    handleHideNews();
+    document.querySelector('.Newsletter').classList.add('NewsSlideDown');
   }, [])
 
   const getDocHeight = () => {
@@ -44,6 +51,15 @@ export default function Newsletter({ hideNews, setHideNews, ...props }) {
   }
 
   const handleHideNews = () => {
+    const now = new Date();
+    const time = now.getTime();
+    const expireTime = time + (1000 * 60 * 10);
+    now.setTime(expireTime);
+    // console.log(now);
+    // document.cookie = `hideNewsUntil=${now};expires=${now.toString()};path=/;SameSite=none;Secure`;
+    // console.log(document.cookie);
+    localStorage.setItem('hideNewsUntil', now);
+    // console.log(new Date(localStorage.hideNewsUntil));
     document.querySelector('.Newsletter').classList.add('NewsSlideDown');
   };
   
