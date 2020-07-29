@@ -79,18 +79,6 @@
 }
 
 .NotifSlideUp {
-  /* animation-name: NotifSlideUp;
-  animation-duration: 1.5s;
-  animation-fill-mode: forwards; */
   transition: all .3s ease-in-out;
   max-height: 0rem;
 }
-/* 
-@keyframes NotifSlideUp {
-  0% {
-    transform: translateY(0%);
-  }
-  100% {
-    transform: translateY(-100%);
-  }
-} */

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
 	faComments,
@@ -22,15 +22,15 @@ library.add(
 	faChartLine
 );
 
-export default function App() {
-  const [hideNotif, setHideNotif] = useState(false);
-  const [hideNews, setHideNews] = useState(false);
+// notification & newsletter go here so hypothetically
+// they will apply to other pages
 
+export default function App() { 
 	return (
 		<div className="App">
-			<Notification hideNotif={hideNotif} setHideNotif={setHideNotif} />
+			<Notification />
 			<Home />
-			<Newsletter hideNews={hideNews} setHideNews={setHideNews} />
+			<Newsletter />
 		</div>
 	);
 }

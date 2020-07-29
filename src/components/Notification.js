@@ -1,12 +1,12 @@
 import React from 'react';
 import './Notification.css';
 
-export default function Notification({ hideNotif, setHideNotif, ...props }) {
+export default function Notification() {
   const handleHideNotif = () => {
     document.querySelector('.Notification').classList.toggle('NotifSlideUp');
   };
+  
   return (
-    // <div className={"Notification" + (hideNotif ? " NotifHidden" : "")}>
     <div className="Notification">
       <div className="NotifBox">
         <p>
@@ -14,7 +14,6 @@ export default function Notification({ hideNotif, setHideNotif, ...props }) {
           {/* eslint-disable-next-line */}
           &nbsp;<a href="">Cookie Policy</a>, <a href="">Privacy Policy</a>, and our <a href="">Terms of Service</a>.
         </p>
-        {/* <button onClick={() => setHideNotif(true)}> */}
         <button onClick={() => handleHideNotif()}>
           Got it
         </button>
