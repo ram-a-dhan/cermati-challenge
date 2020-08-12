@@ -1,57 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import useScrollListener from '../hooks/useScrollListener';
 import './Newsletter.css';
 
 export default function Newsletter() {
-  const [scrollPos, setScrollPos] = useState(0); // scroll position indicator
-  const [docHeight, setDocHeight] = useState(0); // page total height indicator
-
-  useEffect(() => { // watcher for changes in scoll position and page total height
-    const handleDocHeight = () => {
-      setDocHeight(getDocHeight);
-    };
-    window.addEventListener('load', handleDocHeight);
-    window.addEventListener('scroll', handleDocHeight);
-    window.addEventListener('resize', handleDocHeight);
-
-    const handleScrollPos = () => {
-      setScrollPos(Math.round(window.pageYOffset));
-    };
-    window.addEventListener('load', handleScrollPos);
-    window.addEventListener('scroll', handleScrollPos);
-    window.addEventListener('resize', handleScrollPos);
-    return () => {
-      window.removeEventListener('load', handleDocHeight);
-      window.removeEventListener('scroll', handleDocHeight);
-      window.removeEventListener('resize', handleDocHeight);
-      window.removeEventListener('load', handleScrollPos);
-      window.removeEventListener('scroll', handleScrollPos);
-      window.removeEventListener('resize', handleScrollPos);
-    }
-  }, [scrollPos, docHeight]);
+  const { scrollPos, docHeight } = useScrollListener();
 
   useEffect(() => {
     // if scroll position reaches 1/3 page total height and
     // if the time limit in localstorage exceeds current time
     // newsletter box will show up again
-    if (scrollPos + Math.round(window.innerHeight / 2) >= Math.round(docHeight / 3)) {
-      if (!localStorage.hideNewsUntil || new Date(localStorage.hideNewsUntil) < new Date()) {
-        localStorage.removeItem('hideNewsUntil');
-        document.querySelector('.Newsletter').classList.remove('NewsSlideDown');
-      }
+    if (
+      scrollPos + Math.round(window.innerHeight / 2) >= Math.round(docHeight / 3) &&
+      ((!localStorage.hideNewsUntil || new Date(localStorage.hideNewsUntil)) < new Date())
+    ) {
+      localStorage.removeItem('hideNewsUntil');
+      document.querySelector('.Newsletter').classList.remove('NewsSlideDown');
     }
   }, [scrollPos, docHeight]);
 
   useEffect(() => {
     document.querySelector('.Newsletter').classList.add('NewsSlideDown');
   }, [])
-
-  const getDocHeight = () => {
-    setDocHeight(Math.max(
-      document.body.scrollHeight, document.documentElement.scrollHeight,
-      document.body.offsetHeight, document.documentElement.offsetHeight,
-      document.body.clientHeight, document.documentElement.clientHeight
-    ))
-  }
 
   const handleHideNews = () => {
     // for hiding newsletter box when closed and
